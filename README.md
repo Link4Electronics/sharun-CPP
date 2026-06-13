@@ -84,7 +84,7 @@ cp ./build/sharun .
     -s, --strip              Strip binaries and libraries (env: STRIP=1)
     -v, --verbose            Verbose mode (env: VERBOSE=1)
     -w, --with-sharun        Pack sharun from PATH or env or download
-                                (env: WITH_SHARUN=1, SHARUN=/path|URL, SHARUN_URL=URL, UPX_SHARUN=1)
+                                (env: WITH_SHARUN=1, SHARUN=/path|URL, SHARUN_URL=URL)
     -o, --with-wrappe        Pack with wrappe from PATH or env or download
                                 (env: WITH_WRAPPE=1, WRAPPE=/path|URL, WRAPPE_URL=URL)
     -c, --wrappe-clvl 0-22   Specify the compression level for wrappe (env: WRAPPE_CLVL=0-22) (default: 8)

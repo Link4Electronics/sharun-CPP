@@ -116,7 +116,7 @@ usage() {
     -s, --strip              Strip binaries and libraries (env: STRIP=1)
     -v, --verbose            Verbose mode (env: VERBOSE=1)
     -w, --with-sharun        Pack sharun from PATH or env or download
-                                (env: WITH_SHARUN=1, SHARUN=/path|URL, SHARUN_URL=URL, UPX_SHARUN=1)
+                                 (env: WITH_SHARUN=1, SHARUN=/path|URL, SHARUN_URL=URL)
     -o, --with-wrappe        Pack with wrappe from PATH or env or download
                                 (env: WITH_WRAPPE=1, WRAPPE=/path|URL, WRAPPE_URL=URL)
     -c, --wrappe-clvl 0-22   Specify the compression level for wrappe (env: WRAPPE_CLVL=0-22) (default: 8)
@@ -750,7 +750,7 @@ if [[  ! -d "$WRAPPE_DIR" || "$WITH_PYTHON" == 1 ]]
                                             then
                                                 if [[ "$with_sharun" == 1 && ! -x "${dst_dir}/sharun" ]]
                                                     then
-                                                        TMP_SHARUN="${TMPDIR}/sharun-${ARCH}$([ "$UPX_SHARUN" != 1 ]||echo -upx)"
+                                                        TMP_SHARUN="${TMPDIR}/sharun-${ARCH}"
                                                         SHARUN="${SHARUN:="$(readlink -f "$(which_exe sharun)")"}"
                                                         SHARUN="${SHARUN:="$TMP_SHARUN"}"
                                                         if [ ! -x "$SHARUN" ]
@@ -760,7 +760,7 @@ if [[  ! -d "$WRAPPE_DIR" || "$WITH_PYTHON" == 1 ]]
                                                                         SHARUN_URL="$SHARUN"
                                                                         SHARUN="$TMP_SHARUN"
                                                                 fi
-                                                                SHARUN_URL="${SHARUN_URL:=${GIT_SHARUN_RELEASE}$([ "$UPX_SHARUN" != 1 ]||echo -upx)}"
+                                                                SHARUN_URL="${SHARUN_URL:=${GIT_SHARUN_RELEASE}}"
                                                                 info_msg "Downloading sharun -> '$SHARUN'..."
                                                                 info_msg "$SHARUN_URL"
                                                                 if try_dl "$SHARUN_URL" "$SHARUN"

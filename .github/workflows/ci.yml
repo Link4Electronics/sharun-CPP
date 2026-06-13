@@ -57,6 +57,7 @@ jobs:
             --platform=${{ matrix.platform }} \
             ${{ matrix.image }} \
             sh -c "
+              sed -i 's|https://|http://|g' /etc/apk/repositories
               apk add --no-cache \
                 g++ musl-dev zlib-dev cmake make linux-headers \
                 bash file binutils patchelf findutils grep sed coreutils \
@@ -91,11 +92,6 @@ jobs:
           make
           sudo mv -fv sstrip /usr/bin/)
           sstrip sharun-${{ matrix.arch }}* 2>/dev/null || true
-
-      - name: UPX
-        run: |
-          ls sharun-${{ matrix.arch }}* 2>/dev/null | \
-            xargs -I {} upx -9 --best {} -o {}-upx 2>/dev/null || true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
